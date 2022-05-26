@@ -2,6 +2,8 @@
 import csv
 import os
 
+from regex import F
+
 #assign variable for full path to file to be read
 file_to_load=os.path.join('Resources','election_results.csv')
 
@@ -50,30 +52,56 @@ with open(file_to_load) as election_data:
         #increment vote count by row
         candidate_votes[candidate_name] += 1
 
-#determine percentage of total vote received by each candidate and print to screen
-# for candidate in candidate_options:
-    #print(f'Candidate {candidate} received {candidate_votes[candidate]/total_votes:.2%} of the total votes')
-
-#1. iterate though dict
-for candidate_name in candidate_votes:
-    #get vote count
-    votes=candidate_votes[candidate_name]
-
-    # calc pct of votes
-    vote_perecentage=float(votes)/float(total_votes)
-
-    #add name/votes/pct to respective variables if largest
-    if (votes>winning_count) and (vote_perecentage>winning_percentage):
-        winning_count=votes
-        winning_percentage=vote_perecentage
-        winning_candidate=candidate_name
-    
-    print(f'{candidate_name}: {vote_perecentage:.1%} ({votes:,})\n')
-
-winning_candidate_summary = (
+with open(file_to_save,'w') as txt_file:
+    election_results=(
+    f'\n'
+    f'Election Results\n'
     f'---------------------------\n'
-    f'Winner: {winning_candidate}\n'
-    f'Winning Vote Count: {winning_count:,}\n'
-    f'Winning Percentage: {winning_percentage:.1%}\n'
-    f'----------------------------\n')
-print(winning_candidate_summary)
+    f'Total Votes: {total_votes:,}\n'
+    f'---------------------------\n')
+
+    print(election_results,end='')
+
+    txt_file.write(election_results)
+    #determine percentage of total vote received by each candidate and print to screen
+    # for candidate in candidate_options:
+        #print(f'Candidate {candidate} received {candidate_votes[candidate]/total_votes:.2%} of the total votes')
+
+    #1. iterate though dict
+    for candidate_name in candidate_votes:
+        #get vote count
+        votes=candidate_votes[candidate_name]
+
+        # calc pct of votes
+        vote_perecentage=float(votes)/float(total_votes)
+        
+        #print each candidates results to terminal
+        #print(f'{candidate_name}: {vote_perecentage:.1%} ({votes:,})\n')
+        
+        #add results to results variable
+        candidate_results=(f'{candidate_name}: {vote_perecentage:.1%} ({votes:,})\n')
+        
+        print(candidate_results)
+
+        # save the candidate results to our text file
+        txt_file.write(candidate_results)
+
+        
+        #add name/votes/pct to respective variables if largest
+        if (votes>winning_count) and (vote_perecentage>winning_percentage):
+            winning_count=votes
+            winning_percentage=vote_perecentage
+            winning_candidate=candidate_name
+        
+      
+    #print winning candidates results to terminal
+    winning_candidate_summary = (
+        f'---------------------------\n'
+        f'Winner: {winning_candidate}\n'
+        f'Winning Vote Count: {winning_count:,}\n'
+        f'Winning Percentage: {winning_percentage:.1%}\n'
+        f'----------------------------\n')
+    print(winning_candidate_summary)
+
+    # Save the winning candidates results to text file
+    txt_file.write(winning_candidate_summary)
