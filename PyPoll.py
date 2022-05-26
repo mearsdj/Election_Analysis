@@ -1,21 +1,3 @@
-# #Pseudo
-# #code
-
-# # Assign a variable for the file to load and the path.
-# import csv
-
-
-# file_to_load='Resources/election_results.csv'
-
-# # Open the election results and read the file
-# #election_data = open(file_to_load,'r')
-# with open(file_to_load) as election_data:
-
-#     # to do: Perform Analysis
-#     print (election_data)
-# # Close the file.
-# election_data.close()
-
 #add dependencies
 import csv
 import os
@@ -95,32 +77,3 @@ winning_candidate_summary = (
     f'Winning Percentage: {winning_percentage:.1%}\n'
     f'----------------------------\n')
 print(winning_candidate_summary)
-#to do: print out winning candidate, vote count, and percentage to terminal
-    
-    #print name and pct of votes
-
-    #print(f'{candidate_name}: received {vote_perecentage:.1%} of the total vote.')
-#print the candidate_vote dict
-#print(candidate_votes)
-    #print(headers)
-    # print(file_reader.dialect)
-    # print(file_reader.line_num)
-    # #print each row in csv file
-    # for row in file_reader:
-    #     print(row)
-
-#use open stmt to open the file as a text file
-#outfile = open(file_to_save,'w')
-
-# #write some data to the file
-# #outfile.write('Ahoy there world!')
-# with open(file_to_save,'w') as txt_file:
-#     #txt_file.write('Yay Derek!')
-#     txt_file.write('Counties in the Election\n')
-#     txt_file.write('------------------------\n')
-#     txt_file.write('Arapahoe\n')
-#     txt_file.write('Denver\n')
-#     txt_file.write('Jefferson\n')
-#     #txt_file.write
-# #close the file
-# #outfile.close()
